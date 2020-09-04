@@ -10,7 +10,7 @@ CREATE TABLE producto(id SERIAL, nombre VARCHAR(30), descripcion VARCHAR(150), v
 CREATE TABLE categoria(id SERIAL, nombre VARCHAR(30), descripcion VARCHAR(150), PRIMARY KEY(id)); 
 CREATE TABLE clientes_facturas(id SERIAL, id_cliente INT NOT NULL, id_factura INT NOT NULL, cantidad INT, FOREIGN KEY(id_cliente) REFERENCES clientes(id), FOREIGN KEY(id_factura) REFERENCES facturas(id), PRIMARY KEY(id));
 CREATE TABLE producto_categoria(id SERIAL, id_categoria INT, id_producto INT, FOREIGN KEY(id_categoria) REFERENCES categoria(id), FOREIGN KEY(id_producto) REFERENCES producto(id), PRIMARY KEY(id));
-CREATE TABLE listado_productos(id SERIAL, id_factura INT, cantidad INT NOT NULL, id_productos INT, FOREIGN KEY(id_factura) REFERENCES facturas(id), FOREIGN KEY(id_productos) REFERENCES facturas(id));
+CREATE TABLE listado_productos(id SERIAL, id_factura INT, id_productos INT, FOREIGN KEY(id_factura) REFERENCES facturas(id), FOREIGN KEY(id_productos) REFERENCES facturas(id));
 
 
 -- Insertar datos
@@ -79,4 +79,35 @@ INSERT INTO clientes_facturas(id_cliente, id_factura, cantidad)VALUES
 (4, 8, 3),
 (4, 9, 4),
 (4, 10, 3);
+
+
+
+INSERT INTO listado_productos(id_factura, id_productos)VALUES
+(1, 2),
+(1, 1),
+(2, 6),
+(2, 5),
+(2, 7),
+(3, 6),
+(3, 5),
+(3, 7), 
+(4, 4), 
+(4, 3),
+(5, 5),
+(5, 6),
+(5, 7),
+(6, 6),
+(7, 6),
+(7, 5),
+(8, 8), 
+(8, 5), 
+(8, 7),
+(9, 6), 
+(9, 5),
+(9, 7), 
+(9, 1),
+(10, 6),
+(10, 5), 
+(10, 7);
+
 
