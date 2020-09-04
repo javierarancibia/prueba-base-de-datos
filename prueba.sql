@@ -8,7 +8,7 @@ CREATE TABLE clientes(id SERIAL,nombre VARCHAR(100), rut VARCHAR(10), direccion 
 CREATE TABLE facturas(id SERIAL, fecha DATE, subtotal FLOAT NOT NULL, iva FLOAT NOT NULL, precio_total FLOAT NOT NULL, PRIMARY KEY(id));
 CREATE TABLE producto(id SERIAL, nombre VARCHAR(30), descripcion VARCHAR(150), valor_unitario FLOAT NOT NULL, PRIMARY KEY(id));
 CREATE TABLE categoria(id SERIAL, nombre VARCHAR(30), descripcion VARCHAR(150), PRIMARY KEY(id)); 
-CREATE TABLE clientes_facturas(id SERIAL, id_cliente INT NOT NULL, id_factura INT NOT NULL, FOREIGN KEY(id_cliente) REFERENCES clientes(id), FOREIGN KEY(id_factura) REFERENCES facturas(id), PRIMARY KEY(id));
+CREATE TABLE clientes_facturas(id SERIAL, id_cliente INT NOT NULL, id_factura INT NOT NULL, cantidad INT, FOREIGN KEY(id_cliente) REFERENCES clientes(id), FOREIGN KEY(id_factura) REFERENCES facturas(id), PRIMARY KEY(id));
 CREATE TABLE producto_categoria(id SERIAL, id_categoria INT, id_producto INT, FOREIGN KEY(id_categoria) REFERENCES categoria(id), FOREIGN KEY(id_producto) REFERENCES producto(id), PRIMARY KEY(id));
 CREATE TABLE listado_productos(id SERIAL, id_factura INT, cantidad INT NOT NULL, id_productos INT, FOREIGN KEY(id_factura) REFERENCES facturas(id), FOREIGN KEY(id_productos) REFERENCES facturas(id));
 
@@ -29,7 +29,7 @@ INSERT INTO producto(nombre, descripcion, valor_unitario)VALUES
 ('Shampoo Loreal', 'Producto de limpieza para mujeres', 4000),
 ('Fideos Italianos', 'Tallarines ideales para el almuerzo', 2000),
 ('Confort Patito', 'Producto de limpieza en el baño', 1000),
-('Pavo', 'Bandeja de filetes de pavo', 5000),
+('Pavo', 'Bandeja de fieltes de pavo', 5000),
 ('Vasos Frozen', 'Set de 6 vasos para el hogar', 3000),
 ('Queso La Vaquita', 'Medio kilo de queso chanco del sur', 4000);
 
@@ -63,4 +63,20 @@ INSERT INTO facturas(fecha, subtotal, IVA, precio_total)VALUES
 ('2020-09-04', 10000, 0.19, 11900),
 ('2020-09-04', 9000, 0.19, 10710);
 
+-- 2 para el cliente 1, con 2 y 3 productos
+-- 3 para el cliente 2, con 3, 2 y 3 productos
+-- 1 para el cliente 3, con 1 producto
+-- 4 para el cliente 4, con 2, 3, 4 y 1 producto
+
+INSERT INTO clientes_facturas(id_cliente, id_factura, cantidad)VALUES
+(1, 1, 2),
+(1, 2, 3),
+(2, 3, 3),
+(2, 4, 2),
+(2, 5, 3), 
+(3, 6, 1),
+(4, 7, 2),
+(4, 8, 3),
+(4, 9, 4),
+(4, 10, 3);
 
