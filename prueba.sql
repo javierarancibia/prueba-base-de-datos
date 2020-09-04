@@ -37,7 +37,7 @@ INSERT INTO producto(nombre, descripcion, valor_unitario)VALUES
 INSERT INTO categoria(nombre, descripcion)VALUES
 ('Limpieza Personal', 'Productos de limpieza para humanos'),
 ('Historietas', 'Revistas ilustradas'),
-('Productos para el hogar', 'Productos de cocina y hogar');
+('Productos para el hogar', 'Productos de cocina y hogar'),
 
 -- 10 facturas
 -- Cliente 1 - Condorito (3000) - Jabon Popeye (1000) TOTAL 4000
@@ -68,6 +68,7 @@ INSERT INTO facturas(fecha, subtotal, IVA, precio_total)VALUES
 -- 1 para el cliente 3, con 1 producto
 -- 4 para el cliente 4, con 2, 3, 4 y 1 producto
 
+-- Se ingresan ids de cliente, factura y cantidad de productos
 INSERT INTO clientes_facturas(id_cliente, id_factura, cantidad)VALUES
 (1, 1, 2),
 (1, 2, 3),
@@ -81,7 +82,7 @@ INSERT INTO clientes_facturas(id_cliente, id_factura, cantidad)VALUES
 (4, 10, 3);
 
 
-
+-- Se ingresa id de cada producto a cada factura
 INSERT INTO listado_productos(id_factura, id_productos)VALUES
 (1, 2),
 (1, 1),
@@ -109,5 +110,18 @@ INSERT INTO listado_productos(id_factura, id_productos)VALUES
 (10, 6),
 (10, 5), 
 (10, 7);
+
+
+-- Se relacionan productos con categorias
+INSERT INTO producto_categoria(id_categoria, id_producto)VALUES
+(1, 1),                                
+(2, 2), 
+(1, 3),
+(3, 4),
+(1, 5),
+(3, 6),
+(3, 7),
+(3, 8);
+
 
 
