@@ -123,5 +123,13 @@ INSERT INTO producto_categoria(id_categoria, id_producto)VALUES
 (3, 7),
 (3, 8);
 
+--Consultas
+-- ¿Que cliente realizó la compra más cara?
+SELECT nombre FROM clientes INNER JOIN clientes_facturas ON clientes.id=clientes_facturas.id_cliente JOIN facturas ON facturas.id=clientes_facturas.id_factura ORDER BY(precio_total) DESC LIMIT(1);
+-- ¿Que cliente pagó sobre 100 de monto?
+SELECT nombre FROM clientes INNER JOIN clientes_facturas ON clientes.id=clientes_facturas.id_cliente INNER JOIN facturas ON facturas.id=clientes_facturas.id_factura WHERE precio_total > 100 GROUP BY(nombre);
+
+
+
 
 
